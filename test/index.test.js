@@ -4,6 +4,7 @@ const {KeyClient, CryptographyClient} = require("@azure/keyvault-keys");
 const chai = require("chai");
 const expect = chai.expect;
 
+//The production code accessing keys
 const KeyRepository = function (keyName, url, credential, options) {
     this.keyName = keyName;
     this.credential = credential;
@@ -32,6 +33,7 @@ const KeyRepository = function (keyName, url, credential, options) {
 }
 
 
+//The production code accessing secrets
 const SecretRepository = function (secretNames, url, credential, options) {
     this.secretNames = secretNames;
     this.credential = credential;
@@ -51,6 +53,7 @@ const SecretRepository = function (secretNames, url, credential, options) {
     }
 }
 
+//The credentials allowing tests to use LowKey Vault by bypassing authentication
 class NoopCredential extends ChainedTokenCredential {
     async getToken(scopes, options) {
         return Promise.resolve({
@@ -60,7 +63,7 @@ class NoopCredential extends ChainedTokenCredential {
     }
 }
 
-
+//The tests
 describe('Key Vault', () => {
     it('Decrypt should return original text when called after encrypt', async () => {
         //given

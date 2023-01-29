@@ -11,18 +11,17 @@ a key is used for encrypt/decrypt operations and database connection specific cr
 
 ### Points of interest
 
-* [Key "repository"](test/index.test.js#L7)
-* [Secret "repository"](test/index.test.js#L35)
-* [Empty credentials for connecting to Lowkey Vault](test/index.test.js#L54)
-* [Tests](test/index.test.js#L64)
+* [Key "repository"](test/index.test.js#L8)
+* [Secret "repository"](test/index.test.js#L37)
+* [Empty credentials for connecting to Lowkey Vault](test/index.test.js#L57)
+* [Tests](test/index.test.js#L67)
 
 ### Usage
 
 1. Start Lowkey Vault 
    1. Either by following the steps [here](https://github.com/nagyesta/lowkey-vault#quick-start-guide).
    2. Or running ```docker-compose up -d```
-2. Set ```REQUESTS_CA_BUNDLE``` environment variable to reference [lowkeyvault.pem](lowkeyvault.pem)
-3. Run the tests
+2. Run the tests
 
 Note: In order to better understand what is needed in general to make similar examples work, please find a generic overview 
 [here](https://github.com/nagyesta/lowkey-vault/wiki/Example:-How-can-you-use-Lowkey-Vault-in-your-tests).
