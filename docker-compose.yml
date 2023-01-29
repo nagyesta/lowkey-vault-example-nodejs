@@ -1,0 +1,10 @@
+version: "2"
+
+services:
+  lowkey-vault:
+    container_name: lowkey-vault-nodejs
+    image: nagyesta/lowkey-vault:1.15.0@sha256:72096f6654ebe0fdfca1e9cf7e1183416f169954ef7c0dd51f88afca6a90b5fa
+    ports:
+      - "8443:8443"
+    environment:
+      LOWKEY_ARGS: "--server.port=8443"

@@ -1,0 +1,37 @@
+# This workflow will install Node.js dependencies, run tests and lint with a variety of Node.js versions
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Node.js CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x, 15.x]
+
+    steps:
+    - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+    - run: npm run build --if-present
+    - name: Start Lowkey Vault
+      run: |
+        docker-compose up -d
+        sleep 10
+        docker ps
+    - run: npm test
+    - name: Stop container
+      if: always()
+      run: |
+        docker-compose down
