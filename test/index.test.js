@@ -72,6 +72,7 @@ describe('Key Vault', () => {
         const credential = new NoopCredential();
         const url = "https://localhost:8443";
         let options = {
+            serviceVersion: "7.3",
             disableChallengeResourceVerification: true, // ONLY ON CI, NEVER USE ON PROD!
         };
         const client = new KeyClient(url, credential, options);
@@ -98,6 +99,7 @@ describe('Key Vault', () => {
         const credential = new NoopCredential();
         const url = "https://localhost:8443";
         let options = {
+            serviceVersion: "7.3",
             disableChallengeResourceVerification: true, // ONLY ON CI, NEVER USE ON PROD!
         };
         const client = new SecretClient(url, credential, options);
