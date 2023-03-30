@@ -2,6 +2,7 @@ const {SecretClient} = require("@azure/keyvault-secrets");
 const {ChainedTokenCredential} = require("@azure/identity");
 const {KeyClient, CryptographyClient} = require("@azure/keyvault-keys");
 const chai = require("chai");
+const {CertificateClient} = require("@azure/keyvault-certificates");
 const expect = chai.expect;
 
 //The production code accessing keys
@@ -50,6 +51,19 @@ const SecretRepository = function (secretNames, url, credential, options) {
 
     this.getDbPass = async function () {
         return (await this.client.getSecret(this.secretNames.password)).value;
+    }
+}
+
+
+//The production code accessing certificates
+const CertificateRepository = function (certificateName, url, credential, options) {
+    this.certificateName = certificateName;
+    this.credential = credential;
+    this.options = options;
+    this.client = new SecretClient(url, credential, options);
+
+    this.getBase64Pkcs12Content = async function () {
+        return (await this.client.getSecret(this.certificateName)).value;
     }
 }
 
@@ -121,5 +135,34 @@ describe('Key Vault', () => {
         expect(actualUrl).to.equal(dbUrl);
         expect(actualUser).to.equal(admin);
         expect(actualPass).to.equal(pass);
+    });
+
+    it('Certificates should return base64 string of previously created certificate when called', async () => {
+        //given
+        process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'; // ONLY ON CI, NEVER USE ON PROD!
+        let certificateName = "certificate";
+        const credential = new NoopCredential();
+        const url = "https://localhost:8443";
+        let options = {
+            serviceVersion: "7.3",
+            disableChallengeResourceVerification: true, // ONLY ON CI, NEVER USE ON PROD!
+        };
+        const certificateClient = new CertificateClient(url, credential, options);
+        await certificateClient.beginCreateCertificate(certificateName, {
+            issuerName: "Self",
+            subject: "CN=example.com",
+            validityInMonths: 12,
+            keyCurveName: "P-256",
+            keyType: "EC",
+            contentType: "application/x-pkcs12"
+        });
+        let underTest = new CertificateRepository(certificateName, url, credential, options);
+
+        //when
+        //I don't know how the certificate should be parsed, but the Base64 string is obtained
+        let actualBase64 = await underTest.getBase64Pkcs12Content();
+
+        //then
+        expect(actualBase64.length > 0).to.equal(true);
     });
 });
