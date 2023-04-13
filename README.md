@@ -7,14 +7,16 @@
 # Lowkey Vault - Example Node.js
 
 This is an example for [Lowkey Vault](https://github.com/nagyesta/lowkey-vault). It demonstrates a basic scenario where
-a key is used for encrypt/decrypt operations and database connection specific credentials.
+a key is used for encrypt/decrypt operations and database connection specific credentials as well as getting a PKCS12
+store with a certificate and matching private key inside.
 
 ### Points of interest
 
 * [Key "repository"](test/index.test.js#L8)
 * [Secret "repository"](test/index.test.js#L37)
-* [Empty credentials for connecting to Lowkey Vault](test/index.test.js#L57)
-* [Tests](test/index.test.js#L67)
+* [Certificate "repository"](test/index.test.js#L58)
+* [Empty credentials for connecting to Lowkey Vault](test/index.test.js#L70)
+* [Tests](test/index.test.js#L80)
 
 ### Usage
 
@@ -28,5 +30,5 @@ Note: In order to better understand what is needed in general to make similar ex
 
 ### Note
 
-This is my very first Node.js project after using it for 2-3 hours, please have mercy when
-commenting on code quality!
+I am not a professional JS developer. Please do not judge me by the code quality. I am open to any suggestions and
+improvements.
