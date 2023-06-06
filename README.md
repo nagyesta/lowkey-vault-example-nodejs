@@ -12,9 +12,9 @@ store with a certificate and matching private key inside.
 
 ### Points of interest
 
-* [Key "repository"](test/index.js#L5)
-* [Secret "repository"](test/index.js#L34)
-* [Certificate "repository"](test/index.js#L55)
+* [Key "repository"](src/index.js#L5)
+* [Secret "repository"](src/index.js#L34)
+* [Certificate "repository"](src/index.js#L55)
 * [Empty credentials for connecting to Lowkey Vault](test/index.test.js#L11)
 * [Tests](test/index.test.js#L21)
 
