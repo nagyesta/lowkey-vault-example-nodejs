@@ -16,7 +16,7 @@ describe('Key Vault with Managed Identity', () => {
         const credential = new DefaultAzureCredential(); // Will use Managed Identity via the Assumed Identity container
         const url = "https://localhost:8443";
         let options = {
-            serviceVersion: "7.3",
+            serviceVersion: "7.4",
             disableChallengeResourceVerification: true, // ONLY ON CI, NEVER USE ON PROD!
         };
         const client = new KeyClient(url, credential, options);
@@ -44,7 +44,7 @@ describe('Key Vault with Managed Identity', () => {
         const credential = new DefaultAzureCredential(); // Will use Managed Identity via the Assumed Identity container
         const url = "https://localhost:8443";
         let options = {
-            serviceVersion: "7.3",
+            serviceVersion: "7.4",
             disableChallengeResourceVerification: true, // ONLY ON CI, NEVER USE ON PROD!
         };
         const client = new SecretClient(url, credential, options);
@@ -76,7 +76,7 @@ describe('Key Vault with Managed Identity', () => {
         const credential = new DefaultAzureCredential(); // Will use Managed Identity via the Assumed Identity container
         const url = "https://localhost:8443";
         let options = {
-            serviceVersion: "7.3",
+            serviceVersion: "7.4",
             disableChallengeResourceVerification: true, // ONLY ON CI, NEVER USE ON PROD!
         };
         const certificateClient = new CertificateClient(url, credential, options);
