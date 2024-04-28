@@ -30,10 +30,9 @@ store with a certificate and matching private key inside.
       as done in every test method of [the Managed Identity test cases](test/index-mi.test.js)
 3. Run the tests
 
-Note: In order to better understand what is needed in general to make similar examples work, please find a generic overview 
+> [!NOTE]
+> In order to better understand what is needed in general to make similar examples work, please find a generic overview 
 [here](https://github.com/nagyesta/lowkey-vault/wiki/Example:-How-can-you-use-Lowkey-Vault-in-your-tests).
 
-### Note
-
-I am not a professional JS developer. Please do not judge me by the code quality. I am open to any suggestions and
-improvements.
+> [!TIP]
+> Since v2.4.2, Lowkey Vault is providing the same token endpoint on the `8080` port by default. Therefore, you don't need to start another container.
