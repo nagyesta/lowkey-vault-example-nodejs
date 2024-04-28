@@ -18,7 +18,8 @@ jobs:
         node-version: [14.x, 16.x, 18.x, 19.x]
 
     steps:
-    - uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4.1.4
+    - name: Checkout
+      uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4.1.4
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
       with:
@@ -28,9 +29,12 @@ jobs:
         docker-compose up -d
         sleep 10
         docker ps
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+    - name: NPM CI
+      run: npm ci
+    - name: Build with NPM
+      run: npm run build --if-present
+    - name: Test with NPM
+      run: npm test
     - name: Stop container
       if: always()
       run: |
