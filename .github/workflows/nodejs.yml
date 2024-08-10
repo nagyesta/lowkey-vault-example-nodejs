@@ -26,7 +26,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Start Lowkey Vault
       run: |
-        docker-compose up -d
+        docker compose up -d
         sleep 10
         docker ps
     - name: NPM CI
@@ -38,4 +38,4 @@ jobs:
     - name: Stop container
       if: always()
       run: |
-        docker-compose down
+        docker compose down
