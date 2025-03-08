@@ -1,5 +1,3 @@
-version: "2"
-
 services:
   lowkey-vault:
     container_name: lowkey-vault-nodejs
