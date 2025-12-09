@@ -9,9 +9,10 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions: read-all
+
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
